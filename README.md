@@ -1,11 +1,11 @@
 # wealthTracker
 PHP7 MVC Demo
 
-Features:
-composer
-twig templating
-Bootstrap4 CSS Framework
-jQuery Validate
-DataTables
+<b>Features:</b>
+<br>composer
+<br>twig templating
+<br>Bootstrap4 CSS Framework
+<br>jQuery Validate
+<br>DataTables
 
 a live demo can be viewed at: http://erik-owens-zce.bounceme.net:8888
