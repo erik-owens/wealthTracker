@@ -1,0 +1,12 @@
+{
+    "require": {
+        "twig/twig": "~2.0",
+        "squizlabs/php_codesniffer": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+             "Core\\": "Core/",
+             "App\\": "App/"
+        }
+    }
+}

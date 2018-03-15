@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block body %}
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link active" href="/dashboard"> WealthHub</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/account">Accounts</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/account/add">Add - Account</a>
+    </li>    
+  </ul>
+</nav>
+<div class="container-fluid">
+    <h3>Account - Detail</h3>
+    
+
+    
+    <br><br>
+  <div class="row"> 
+<!--    <div class="col-lg-2 bg-dark"></div>-->
+    <div class="col-sm-12 col-md-12">
+    	<div class="row pb-4">
+            <div class="col-9">
+            	<label for="symbol">Account Name:</label>
+  				<input type="text" class="form-control  label-info" id="name" name="name" value="{{name}}" readonly>            
+            </div>
+    	</div>
+        
+        
+    	<div class="row pb-4">
+            <div class="col-9">
+            	<label for="symbol">Account Number:</label>
+  				<input type="text" class="form-control  label-info" id="account_number" name="account_number" value="{{account_number}}" readonly>            
+            </div>
+    	</div>
+        
+    	<div class="row pb-4">            
+            <div class="col-5">
+            	<label for="symbol">Type:</label>
+  				<input type="text" class="form-control" id="type" name="type" value="{{type}}" readonly>
+            </div>
+
+            <div class="col-5">
+            	<label for="symbol">Balance:</label>
+  				<input type="text" class="form-control" id="balance" name="balance" value="{{balance}}" readonly>
+            </div>
+    	</div>  
+
+<!--    	<div class="row  pb-4">            
+            <div class="col-sm-12">
+                <button type="submit" class="col-12 btn btn-primary">Save</button>            
+            </div>            
+        </div>        -->
+    </div>
+<!--    <div class="col-lg-2 bg-dark"></div>-->
+  </div>
+</div>
+
+    
+
+{% endblock %}

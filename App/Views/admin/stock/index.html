@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block body %}
+
+        <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="/dashboard"> WealthHub</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/stock">Stocks</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/stock/add">Add Stock</a>
+            </li>
+          </ul>
+        </nav>
+
+    	<div class="row bg-light">
+            <div style ="text-align:center;" class="col-12">
+                <h3>Portfolio</h3>
+            </div>
+    	</div>        
+    	
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+       <div id="chart_div" style="width: 100%; height: 300px;"></div>
+       
+<script>
+    $(document).ready(function() {
+        //$.get("http://dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol=cg").done(function (data) {
+        //    console.log(data);
+        //});
+        $(".table-row").click(function() {
+            window.document.location = $(this).data("href");
+        });
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Total'],
+          ['{{date_1}}', 0],
+          ['',   0],
+          ['',   0],
+          ['',   0],          
+          ['',   0],
+          ['',   0],         
+          ['{{date_2}}',   0],
+        ['',   0],
+          ['',   0],
+          ['',   0],          
+          ['',   0],
+          ['',   0],          
+          ['{{date_3}}',  "{{ total_worth }}"]
+        ]);
+
+        var options = {
+          title: '',
+          hAxis: {title: '',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 100}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+      
+      $(window).resize(function(){
+        drawChart();
+      });
+      
+    });
+</script>
+        
+            <h6>&nbsp;&nbsp;&nbsp;STOCKS / BONDS / MUTUAL FUNDS  ${{ total_worth|number_format(2, '.', ',')  }}</h6><br>
+
+                <table id="stockTable" class="table dataTable table-striped">
+                    <thead>
+                    <th style="display:none;">Id</th>    
+                    <th>Name</th>
+                    <!--<th>Symbol</th>-->
+                    <th>Shares</th>
+                    <!--<th>Price</th>-->
+                    <th>Value</th>
+
+                    </thead>
+                    <tbody>
+                {% for rows in data %}
+                    <tr>
+                        <td style="display:none;">{{ rows.id }}</td><td  class="hidden-sm-down">{{ rows.name }}</td><!--<td>{{ rows.symbol }}</td>--><td>{{ rows.shares }}</td><!--<td>${{ rows.last_price|number_format(2, '.', ',') }}</td>--><td>${{ rows.value|number_format(2, '.', ',') }}</td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody> 
+                </table>  
+            <br>
+    	            
+
+    
+    <script>
+        $("#stockTable tbody").on('click', 'tr', function (e) {
+	var rowId = $('td', this).eq(0).text();
+	if (rowId !== undefined) {
+	    window.location.href = "stock/detail?id=" + rowId;
+	}
+    });
+        
+        $(document).ready( function () {
+            $('#stockTable').DataTable();
+        } );
+    </script>   
+    
+{% endblock %}    

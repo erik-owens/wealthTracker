@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block body %}
+
+
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link active" href="/dashboard"> WealthHub</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/account">Accounts</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/account/add">Add Account</a>
+    </li>
+  </ul>
+</nav>
+
+<h3 style ="text-align:center;" >Accounts</h3>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+       <div id="chart_div" style="width: 100%; height: 300px;"></div>
+       
+<script>
+    $(document).ready(function() {
+        //$.get("http://dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol=cg").done(function (data) {
+        //    console.log(data);
+        //});
+        $(".table-row").click(function() {
+            window.document.location = $(this).data("href");
+        });
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Total'],
+          ['{{date_1}}', 0],
+          ['',   0],
+          ['',   0],
+          ['',   0],          
+          ['',   0],
+          ['',   0],         
+          ['{{date_2}}',   0],
+        ['',   0],
+          ['',   0],
+          ['',   0],          
+          ['',   0],
+          ['',   0],          
+          ['{{date_3}}',  "{{ total_worth }}"]
+        ]);
+
+        var options = {
+          title: '',
+          hAxis: {title: '',  titleTextStyle: {color: '#333'}},
+          vAxis: {minValue: 0}
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+      
+      $(window).resize(function(){
+        drawChart();
+      });
+      
+    });
+</script>
+
+<h5><BR>&nbsp;&nbsp;&nbsp;FINANCIAL ACCOUNTS  ${{ total_worth|number_format(2, '.', ',')  }}</h5>
+<table id="accountTable" class="table dataTable table-striped">
+    <thead>
+    <th style="display:none;">Id</th>    
+    <th>Name</th>
+    <th>Account Number</th>
+    <th>Type</th>
+    <th>Balance</th>
+
+    </thead>
+    <tbody>
+{% for rows in data %}
+    <tr>
+        <td style="display:none;">{{ rows.id }}</td><td>{{ rows.name }}</td><td>{{ rows.account_number }}</td><td>{{ rows.type }}</td><td>${{ rows.balance|number_format(2, '.', ',') }}</td>
+    </tr>
+    
+{% endfor %}
+    
+</tbody> 
+</table>  
+<br>    
+    
+    <script>
+        $("#accountTable tbody").on('click', 'tr', function (e) {
+	var rowId = $('td', this).eq(0).text();
+	if (rowId !== undefined) {
+	    window.location.href = "account/detail?id=" + rowId;
+	}
+    });
+        
+        $(document).ready( function () {
+            $('#accountTable').DataTable();
+             
+        } );
+    </script>   
+    
+{% endblock %}    

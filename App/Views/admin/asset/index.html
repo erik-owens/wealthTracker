@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block body %}
+
+
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link active" href="/dashboard"> WealthHub</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/asset">Assets</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/asset/add">Add Asset</a>
+    </li>
+  </ul>
+</nav>
+
+<h3 style ="text-align:center;" >Assets</h3>
+<table id="assetTable" class="table dataTable table-striped">
+    <thead>
+        <th style="display:none;">Id</th>    
+        <th>Name</th>
+        <th>Value</th>
+        <!--<th>Description</th>-->
+    </thead>
+    <tbody>
+{% for rows in data %}
+        <tr>
+            <td style="display:none;">{{ rows.id }}</td><td>{{ rows.name }}</td><td>${{ rows.value|number_format(2, '.', ',') }}</td><!--<td>{{ rows.description }}</td>-->
+        </tr>
+{% endfor %}   
+    </tbody> 
+</table>  
+<br>    
+    
+    <script>
+        $("#assetTable tbody").on('click', 'tr', function (e) {
+	var rowId = $('td', this).eq(0).text();
+	if (rowId !== undefined) {
+	    window.location.href = "asset/detail?id=" + rowId;
+	}
+    });
+        
+        $(document).ready( function () {
+            $('#assetTable').DataTable();
+             
+        } );
+    </script>   
+    
+{% endblock %}    

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block body %}
+<form action="/asset/add" method="POST">
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link active" href="/dashboard"> WealthHub</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/asset">Assets</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/asset/add">Asset Add</a>
+    </li> 
+  </ul>
+</nav>
+<div class="container-fluid">
+    <h3>Asset - Detail</h3>
+    
+
+  <div class="row"> 
+<!--    <div class="col-lg-2 bg-dark"></div>-->
+    <div class="col-sm-12 col-md-12">
+    	<div class="row pb-4">
+            <div class="col-9">
+            	<label for="symbol">Name:</label>
+  				<input type="text" class="form-control  label-info" id="name" name="name" value="{{name}}" readonly>            
+            </div>
+    	</div>
+                
+    	<div class="row pb-4">            
+            <div class="col-5">
+            	<label for="symbol">Value:</label>
+  				<input type="text" class="form-control" id="value" name="value" value="${{value|number_format(2, '.', ',')}}" readonly>
+            </div>
+    	</div>  
+
+    	<div class="row pb-4">
+            <div class="col-9">
+            	<label for="symbol">Description:</label>
+  				<input type="text" class="form-control  label-info" id="description" name="description" value="{{description}}" readonly>            
+            </div>
+    	</div>
+    </div>
+<!--    <div class="col-lg-2 bg-dark"></div>-->
+<!--    	<div class="row  pb-4">            
+            <div class="col-12">
+                <button type="submit" class="col-12 btn btn-primary">Save</button>            
+            </div>            
+        </div>   -->
+
+  </div>
+</div>
+</form>
+    
+
+{% endblock %}

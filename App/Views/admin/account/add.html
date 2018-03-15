@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block body %}
+<form id="addAccount" action="/account/add" method="POST">
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link active" href="/dashboard"> WealthHub</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/account">Accounts</a>
+    </li>
+  </ul>
+</nav>
+<div class="container-fluid">
+    <h3>Add - Account</h3>
+  <div class="row"> 
+<!--    <div class="col-lg-2 bg-dark"></div>-->
+    <div class="col-sm-12 col-md-12">
+    	<div class="row pb-4">
+            <div class="col-9">
+            	<label for="symbol">Account Name:</label>
+  				<input type="text" class="form-control  label-info" id="name" name="name" value="">            
+            </div>
+    	</div>
+        
+        
+    	<div class="row pb-4">
+            <div class="col-9">
+            	<label for="symbol">Account Number:</label>
+  				<input type="text" class="form-control  label-info" id="account_number" name="account_number" value="">            
+            </div>
+    	</div>
+        
+    	<div class="row pb-4">            
+            <div class="col-5">
+            	<label for="symbol">Type:</label>
+  				<input type="text" class="form-control" id="type" name="type" value="">
+            </div>
+
+            <div class="col-5">
+            	<label for="symbol">Balance:</label>
+  				<input type="text" class="form-control" id="balance" name="balance" value="">
+            </div>
+    	</div>  
+
+    	<div class="row  pb-4">            
+            <div class="col-sm-12">
+                <button type="submit" class="col-12 btn btn-primary">Save</button>            
+            </div>            
+        </div>        
+    </div>
+<!--    <div class="col-lg-2 bg-dark"></div>-->
+  </div>
+</div>
+</form>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script>
+$( "#addAccount" ).validate({
+  rules: {
+    name: {
+      required: true
+    },
+    account_number: {
+      required: true
+    },
+    type: {
+      required: true
+    },   
+    balance: {
+      required: true,
+      number: true
+    }    
+  },
+  messages: {
+    name: {
+      required:  'Account Name is Required'
+    },
+    account_number: {
+      required: 'Account Number is Required'
+    },
+    type: {
+      required:  'Type is Required'
+    }, 
+    balance: {
+      required:'Balance is Required',
+      number:'Balance must be a valid number'
+    }   
+  }  
+});
+</script>    
+ 
+
+{% endblock %}

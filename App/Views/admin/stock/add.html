@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block body %}
+<form action="/stock/add" method="POST">
+    <script type="text/javascript">
+
+	$(function() {
+
+		$("#symbolsearch")
+			.focus()
+			.autocomplete({
+				source: function(request,response) {
+					$.ajax({
+						beforeSend: function(){ 
+							$("span.help-inline").show();
+							$("span.label-info").empty().hide();
+						},
+						url: "http://dev.markitondemand.com/api/v2/Lookup/jsonp",
+						dataType: "jsonp",
+						data: {
+							input: request.term
+						},
+						success: function(data) {
+							response( $.map(data, function(item) {
+								return {
+									label: item.Name + " (" +item.Exchange+ ")",
+									value: item.Symbol
+								}
+							}));
+							$("span.help-inline").hide();
+						}
+					});
+				},
+				minLength: 0,
+				select: function( event, ui ) {
+					//console.log(ui.item);
+					$("input.label-info").val("" + ui.item.label).fadeIn("fast");
+                                        $("span.label-info").html("" + ui.item.label).fadeIn("fast");
+				},
+				open: function() {
+					//$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+				},
+				close: function() {
+					//$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+				}
+			})
+		;
+	});
+
+</script>
+
+
+<div class="container-fluid">
+    <h1>Add - Stock</h1>
+    
+
+    
+    <br><br>
+  <div class="row"> 
+<!--    <div class="col-lg-2 bg-dark"></div>-->
+    <div class="col-sm-8 col-md-10">
+    	<div class="row pb-4">
+            <div class="col-3">
+            	<label for="symbol">Symbol:</label>
+  		<input type="text" id="symbolsearch"  name="symbol"  class="input- ui-autocomplete-input" placeholder="Enter company name or symbol">
+		<span class="help-inline hide d-none"><img src="images/spinner.gif" align="absmiddle" /> loading...</span>
+                <span class="help-inline hide label label-info"></span>
+            </div>
+            <div class="col-9">
+            	<label for="symbol">Name:</label>
+  				<input type="text" class="form-control  label-info" id="name" name="name" value="">            
+            </div>
+<!--            <div class="col-3">
+            	<label for="symbol">Exchange:</label>
+  				<input type="text" class="form-control" id="exchange" name="exchange" value="">
+            </div>-->
+    	</div>
+    	<div class="row pb-4">            
+            <div class="col-3">
+            	<label for="symbol">Type:</label>
+  				<input type="text" class="form-control" id="type" name="type" value="">
+            </div>
+
+    		<div class="col-4">
+            	<label for="symbol">Shares:</label>
+  				<input type="text" class="form-control" id="shares" name="shares" value="">
+            </div>
+            <div class="col-5">
+            	<label for="symbol">Purchase&nbsp;Price:</label>
+  				<input type="text" class="form-control" id="purchase_price" name="purchase_price" value="">
+            </div>
+    	</div>        
+    	<div class="row  pb-4">
+            <div class="col-md-12">
+            	  <label for="comment">Comments:</label>
+  				  <textarea class="form-control" rows="5" name="comment" id="comment"></textarea>
+            </div>
+        </div>    
+    	<div class="row  pb-4">            
+            <div class="col-md-2">
+                <button type="submit" class="mx-auto btn btn-primary">Submit</button>            
+            </div>            
+        </div>        
+    </div>
+<!--    <div class="col-lg-2 bg-dark"></div>-->
+  </div>
+</div>
+</form>
+    
+
+{% endblock %}
