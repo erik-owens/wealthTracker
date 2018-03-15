@@ -32,7 +32,7 @@ class Config
      * Database password
      * @var string
      */
-    const DB_PASSWORD = 'byrdwav3';
+    const DB_PASSWORD = 'password';
 
     /**
      * Show or hide error messages on screen
