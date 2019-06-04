@@ -8,4 +8,4 @@ PHP7 MVC Demo
 <br>jQuery Validate
 <br>DataTables
 
-a live demo can be viewed at: http://erik-owens-zce.bounceme.net:8888
+a live demo can be viewed at: http://eriko-wealthhub.ddns.net:8888
