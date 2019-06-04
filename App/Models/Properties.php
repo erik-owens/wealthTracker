@@ -32,9 +32,14 @@ class Properties extends \Core\Model
     public static function getProperty($id)
     {
         $db = static::getDB();
-
-        $stmt = $db->query("SELECT * FROM a_property WHERE id = {$id}");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);        
+        $sql = ('SELECT * FROM a_property WHERE id = :id');
+        $stmt = $db->prepare($sql); 
+        $stmt->bindParam( ':id' , $id );   
+        if($stmt->execute() == true){            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+        } else {
+            return false;
+        }       
     }    
     
     
