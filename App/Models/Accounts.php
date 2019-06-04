@@ -32,8 +32,14 @@ class Accounts extends \Core\Model
     public static function getAccount($id)
     {
         $db = static::getDB();
-        $stmt = $db->query("SELECT * FROM a_account WHERE id = {$id}");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);        
+        $sql = ('SELECT * FROM a_account WHERE id = :id');
+        $stmt = $db->prepare($sql); 
+        $stmt->bindParam( ':id' , $id );   
+        if($stmt->execute() == true){            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+        } else {
+            return false;
+        }    
     }    
     
     
