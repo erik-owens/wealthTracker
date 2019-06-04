@@ -29,11 +29,17 @@ class Stocks extends \Core\Model
      *
      * @return array
      */
-    public static function getStock($stock_id)
+    public static function getStock($id)
     {
         $db = static::getDB();
-        $stmt = $db->query("SELECT * FROM a_stock WHERE id = {$stock_id}");
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);        
+        $sql = ('SELECT * FROM a_stock WHERE id = :id');
+        $stmt = $db->prepare($sql); 
+        $stmt->bindParam( ':id' , $id );   
+        if($stmt->execute() == true){            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC); 
+        } else {
+            return false;
+        }            
     }        
     
     
