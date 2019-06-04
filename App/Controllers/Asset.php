@@ -58,7 +58,7 @@ class Asset extends \Core\Controller
   
             //echo"".print_r($stocks,true);
             //View::renderTemplate('admin/asset/detail.html',['id' => $data[0]['id'],'name' => $data[0]['name'],'value' => $data[0]['value'],'description' => $data[0]['description'] ]);
-            header("Location: http://erik-owens-zce.bounceme.net:8888/asset/detail?id={$data[0]['id']}", true, 301);
+            header("Location: http://eriko-wealthhub.ddns.net:8888/asset/detail?id={$data[0]['id']}", true, 301);
         }
     }    
     
