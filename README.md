@@ -10,4 +10,8 @@ PHP7 MVC Demo
 <br>DataTables
 
 
-a live demo can be viewed at: http://eriko-wealthhub.ddns.net:8888
+The Live Demo can be viewed at: http://eriko-wealthhub.ddns.net:8888
+
+Live Demo Notes: 
+1. Stock Symbol Lookup integration in functioning fine.
+2. Zillow integrtion is currently broken in the Property section.
