@@ -29,7 +29,7 @@ class Properties extends \Core\Model
      *
      * @return array
      */
-    public static function getProperty($id)
+    public static function getProperty(int $id)
     {
         $db = static::getDB();
         $sql = ('SELECT * FROM a_property WHERE id = :id');
@@ -48,7 +48,7 @@ class Properties extends \Core\Model
      *
      * @return array
      */
-    public static function addProperty($data)
+    public static function addProperty(array $data)
     {
         //echo"POST:<pre>".print_r($data,true);
         //exit;
@@ -72,7 +72,7 @@ class Properties extends \Core\Model
      *
      * @return array
      */
-    public static function updateProperty($id, $last_price, $gain, $gain_percent)
+    public static function updateProperty(int $id, float $last_price, float $gain, float $gain_percent)
     {
         $db = static::getDB();
         $sql = ('UPDATE a_property SET last_price = :last_price, gain = :gain, gain_percent = :gain_percent WHERE id = :id');
