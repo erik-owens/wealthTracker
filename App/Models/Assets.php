@@ -29,7 +29,7 @@ class Assets extends \Core\Model
      *
      * @return array
      */
-    public static function addAsset($data)
+    public static function addAsset(array $data)
     {
         //echo"POST:<pre>".print_r($data,true);
         //exit;
@@ -50,7 +50,7 @@ class Assets extends \Core\Model
      *
      * @return array
      */
-    public static function getAsset($id)
+    public static function getAsset(int $id)
     {
         $db = static::getDB();
         $sql = ('SELECT * FROM a_asset WHERE id = :id');
