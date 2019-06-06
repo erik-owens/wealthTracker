@@ -29,7 +29,7 @@ class Accounts extends \Core\Model
      *
      * @return array
      */
-    public static function getAccount($id)
+    public static function getAccount(int $id)
     {
         $db = static::getDB();
         $sql = ('SELECT * FROM a_account WHERE id = :id');
@@ -48,7 +48,7 @@ class Accounts extends \Core\Model
      *
      * @return array
      */
-    public static function addAccount($data)
+    public static function addAccount(array $data)
     {
         //echo"POST:<pre>".print_r($data,true);
         //exit;
@@ -69,7 +69,7 @@ class Accounts extends \Core\Model
      *
      * @return array
      */
-    public static function updateAccount($id, $last_price, $gain, $gain_percent, $value)
+    public static function updateAccount(int $id, float $last_price, float $gain, float $gain_percent, float $value)
     {
         $db = static::getDB();
         $sql = ('UPDATE a_stock SET last_price = :last_price, gain = :gain, gain_percent = :gain_percent, value = :value WHERE id = :id');
