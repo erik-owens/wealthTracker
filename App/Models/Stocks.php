@@ -29,7 +29,7 @@ class Stocks extends \Core\Model
      *
      * @return array
      */
-    public static function getStock($id)
+    public static function getStock(int $id)
     {
         $db = static::getDB();
         $sql = ('SELECT * FROM a_stock WHERE id = :id');
@@ -48,7 +48,7 @@ class Stocks extends \Core\Model
      *
      * @return array
      */
-    public static function addStock($data)
+    public static function addStock(array $data)
     {
         //echo"POST:<pre>".print_r($data,true);
         //exit;
@@ -71,7 +71,7 @@ class Stocks extends \Core\Model
      *
      * @return array
      */
-    public static function updateStock($id, $last_price, $gain, $gain_percent, $value)
+    public static function updateStock(int $id, float $last_price, float $gain, float $gain_percent, float $value)
     {
         $db = static::getDB();
         $sql = ('UPDATE a_stock SET last_price = :last_price, gain = :gain, gain_percent = :gain_percent, value = :value WHERE id = :id');
