@@ -11,7 +11,7 @@ PHP7 MVC Demo
 
 
 
-The Live Demo can be viewed at: http://eriko-wealthhub.ddns.net:8888
+<!--The Live Demo can be viewed at: http://eriko-wealthhub.ddns.net:8888 -->
 
 Live Demo Notes: 
 1. Go to the Stock section and add some shares of your favorite stock symbol to your portfolio. 
